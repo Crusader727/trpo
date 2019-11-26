@@ -1,0 +1,43 @@
+.authorization {
+    display: flex;
+    flex-direction: column;
+	border: 2px solid #dadada;
+    padding: 25px;
+    border-radius: 15px;
+    color: #2d2d2d;
+}
+
+label {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.enter {
+    text-align: center;
+    font-size: 36px;
+    font-family: 'Roboto';
+}
+
+.login {
+    height: 60px;
+    color: black;
+    font-size: 20px;
+    border-radius: 4px;
+    padding: 4px;
+    margin-bottom: 40px;
+}
+
+.password {
+    height: 60px;
+    color: black;
+    font-size: 20px;
+    margin-bottom: 50px;
+    border-radius: 4px;
+    padding: 4px;
+    margin-bottom: 40px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}

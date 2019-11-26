@@ -1,0 +1,48 @@
+.preview {
+    width: 900px;
+    height: 350px;
+    margin: 20px 20px;
+    padding: 40px 40px;
+    color: #515151;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid #F08177;
+    border-radius: 30px;
+}
+
+.preview-description {
+    margin-left: 40px;
+    font-size: 20px;
+    flex-grow: 1;
+}
+
+.preview-date {
+    color: #F08177;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.line {
+    height: 2px; /* Толщина линии */
+    color: red;
+    background-color: red; /* Цвет линии */
+
+}
+
+.date {
+    margin-top: 30px;
+}
+
+.delete-button {
+    width: 220px;
+    height: 50px;
+}

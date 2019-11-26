@@ -1,0 +1,28 @@
+.header {
+	background-image: linear-gradient(1.4turn, #F08177, #fb9f74);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;	
+	border-radius: 0 0 15px 15px;
+	width: 100%;
+	height: 70px;
+	padding: 0 40px;
+}
+
+.project-name { 
+	font-weight: 600;
+	font-size: 25px;
+	color: #fff;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+.btn-lk {
+	margin-right: 20px;
+}

@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FCFBFD;
+}
+
+a,
+textarea,
+p,
+input,
+button,
+div {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

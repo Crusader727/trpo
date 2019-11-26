@@ -1,0 +1,29 @@
+.authorization-page {
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin-top: 50px;
+}
+
+.authorization-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	border: 1px solid rgba(255, 255, 255, .5);
+    padding: 5px;
+    border-radius: 25px;
+    color:   #515151;
+}
+
+.title-no-account {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
