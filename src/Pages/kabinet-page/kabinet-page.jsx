@@ -4,33 +4,44 @@ import React from 'react';
 import Preview from '../../Components/preview/preview.js';
 import { Link } from 'react-router-dom';
 
-import {RecordModule} from '../../TableModule/record';
+import { RecordModule } from '../../TableModule/record';
 import { Record } from '../../ActiveRecords/record';
 
 class KabinetPage extends React.Component {
-    state={
+    state = {
         records: {},
         keys: [],
         vets: [],
         users: {},
     }
     componentDidMount() {
-        const {userId} = this.props;
-        RecordModule.getUserRecords(userId).then(({records, keys}) => this.setState({records, keys}))
-        RecordModule.getVetsByRecords(userId).then(({vets, users}) => this.setState({vets, users}))
+        const { userId } = this.props;
+        if (!this.props.isAdmin) {
+            RecordModule.getUserRecords(userId).then(({ records, keys }) => this.setState({ records, keys }))
+            RecordModule.getVetsByRecords(userId).then(({ vets, users }) => this.setState({ vets, users }))
+        } else {
+            RecordModule.getAllRecords(userId).then(({ records, keys }) => this.setState({ records, keys }))
+            RecordModule.getVetsByAll(userId).then(({ vets, users }) => this.setState({ vets, users }))
+        }
     }
 
 
     handleDelete = () => {
-        const {userId} = this.props;
-        RecordModule.getUserRecords(userId).then(({records, keys}) => this.setState({records, keys}))
-        RecordModule.getVetsByRecords(userId).then(({vets, users}) => this.setState({vets, users}))
+        const { userId } = this.props;
+        if (!this.props.isAdmin) {
+            RecordModule.getUserRecords(userId).then(({ records, keys }) => this.setState({ records, keys }))
+            RecordModule.getVetsByRecords(userId).then(({ vets, users }) => this.setState({ vets, users }))
+        } else {
+            RecordModule.getAllRecords(userId).then(({ records, keys }) => this.setState({ records, keys }))
+            RecordModule.getVetsByAll(userId).then(({ vets, users }) => this.setState({ vets, users }))
+        }
     }
 
 
     render() {
-        const {vets} = this.state;
-        const {userId} = this.props;
+        const { vets } = this.state;
+        const { userId } = this.props;
+        console.log(this.state);
         return (
             <div className='kabinet'>
                 <div>
@@ -42,7 +53,7 @@ class KabinetPage extends React.Component {
                 <div className='zapisi'>
                     {
                         vets.map(([key, date, recordId]) => (
-                             <Preview  isKabinet doctor={key} date={date} recordId={recordId} handleDelete={this.handleDelete}/>
+                            <Preview isKabinet doctor={key} date={date} recordId={recordId} handleDelete={this.handleDelete} />
                         ))
                     }
                 </div>

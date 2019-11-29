@@ -14,6 +14,18 @@ export class RecordModuleClass {
             .then(recs => this.filterObject(recs, (val) => val.userId === userId))
             .then(recs => ({ records: recs, keys: Object.keys(recs) }))
     }
+    getAllRecords() {
+        return Record.getAll()
+            .then(recs => this.filterObject(recs, (val) => true))
+            .then(recs => ({ records: recs, keys: Object.keys(recs) }))
+    }
+    getVetsByAll() {
+        return this.getAllRecords().then(({ records, keys }) => {
+            return User.getAll().then(us => {
+                return ({ vets: Object.values(records).map(key => [us[key.vetId], key.date, this.getKeyByValue(records, key)]) });
+            })
+        })
+    }
     getVetsByRecords(userId) {
         return this.getUserRecords(userId).then(({ records, keys }) => {
             return User.getAll().then(us => {

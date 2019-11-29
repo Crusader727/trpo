@@ -13,11 +13,12 @@ import KabinetPage from './Pages/kabinet-page/kabinet-page';
 import fire, { database } from './config/Fire.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+import { AdminsModule } from './TableModule/admins';
 
 class App extends React.Component {
   state = {
     user: null,
+    isAdmin: false,
   }
 
   logout = () => {
@@ -29,6 +30,7 @@ class App extends React.Component {
   login = (user) => {
     database.ref('users/' + user.uid).once('value').then((snap) => this.setState({ results: snap.val() }));
     this.setState({ user });
+    user && user.uid && AdminsModule.isAdmin(user.uid).then(isAdmin => this.setState({ isAdmin })).catch(console.log);
   }
 
   render() {
@@ -38,7 +40,7 @@ class App extends React.Component {
           <Header logout={this.logout} isLoggedin={Boolean(this.state.user)} />
           <Route path='/home'
             render={() => this.state.user ?
-              <Redirect to='/kabinet '/>:
+              <Redirect to='/kabinet ' /> :
               <Redirect to='/authorization' />
             }
           />
@@ -46,8 +48,8 @@ class App extends React.Component {
           <Route path='/authorization'
             render={() => <Authorization login={this.login} logout={this.logout} />}
           />
-          <Route path='/kabinet'  render={() => <KabinetPage userId={this.state.user && this.state.user.uid}/>}/>
-          <Route exact path='/' render={() => <MainPage userId={this.state.user && this.state.user.uid}/>} />
+          <Route path='/kabinet' render={() => <KabinetPage userId={this.state.user && this.state.user.uid} isAdmin={this.state.isAdmin} />} />
+          <Route exact path='/' render={() => <MainPage userId={this.state.user && this.state.user.uid} />} />
         </div>
       </Router>
     );
